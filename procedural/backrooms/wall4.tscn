@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cio0jpem1cf6k"]
+
+[node name="wall" type="Node3D"]
+metadata/part = 0
