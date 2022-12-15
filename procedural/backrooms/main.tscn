@@ -24,6 +24,7 @@ sky_material = SubResource("ProceduralSkyMaterial_xu8by")
 background_mode = 1
 background_color = Color(0.121569, 0.180392, 0.121569, 1)
 sky = SubResource("Sky_p44iy")
+ssil_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_bounce_feedback = 0.8
 sdfgi_cascades = 3

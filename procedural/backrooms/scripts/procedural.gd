@@ -91,10 +91,9 @@ func generate():
 					if tmpr == 4:
 						if surroundingNoise.count(4)>1:
 							tmpr = 5
-							print(currentNoise)
 
 					#more lights
-					if tmpr != 4 and surroundingNoise.count(4)<3:
+					if tmpr != 4 and surroundingNoise.count(4)<2:
 						if randf() > .8:
 							tmpr = 4
 #					print(tmpr)
@@ -114,13 +113,14 @@ func addToAdd(node,pos,nodename):
 ## removes it from the queue
 func nextAdd():
 #	print(toAdd.size())
-	if toAdd.size() > 20:
-		for i in range(20):
+	if toAdd.size() > 10:
+		for i in range(10):
 			var tmp = toAdd.pop_back()
-			if tmp:
+			if tmp and !get_tree().get_first_node_in_group(tmp[2]):
 				tiles.call_deferred("add_child",tmp[0])
 				tmp[0].position = tmp[1]
 				tmp[0].name = tmp[2]
+				tmp[0].add_to_group(tmp[2])
 
 
 ## Adds node to the queue to be removed to the scene
