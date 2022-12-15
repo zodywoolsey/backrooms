@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://co7qxxayd4od6"]
+
+[ext_resource type="Material" uid="uid://c8v53qd01nupc" path="res://procedural/assets/wall.tres" id="1_6v6lk"]
+
+[node name="wall" type="Node3D"]
+metadata/part = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 2, -1.74846e-07)
+material_override = ExtResource("1_6v6lk")
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(0.5, 4, 4.51)

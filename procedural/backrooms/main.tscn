@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://btmo0d70evqru"]
+
+[ext_resource type="Script" path="res://procedural/backrooms/scripts/procedural.gd" id="1_u5i77"]
+[ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="2_vuxx2"]
+[ext_resource type="Material" uid="uid://b7p4luj0f0jkc" path="res://procedural/assets/floor.tres" id="3_my80b"]
+[ext_resource type="Script" path="res://procedural/backrooms/CSGBox3D.gd" id="4_gwx3a"]
+
+[sub_resource type="GDScript" id="GDScript_unaok"]
+script/source = "extends CSGBox3D
+@onready var player = $\"../player\"
+
+func _process(delta):
+	position = Vector3( snapped(player.position.x,10), 4.309 ,snapped(player.position.z,10) )
+"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_s8oss"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xu8by"]
+
+[sub_resource type="Sky" id="Sky_p44iy"]
+sky_material = SubResource("ProceduralSkyMaterial_xu8by")
+
+[sub_resource type="Environment" id="Environment_cab83"]
+background_mode = 1
+background_color = Color(0.121569, 0.180392, 0.121569, 1)
+sky = SubResource("Sky_p44iy")
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.8
+sdfgi_cascades = 3
+sdfgi_min_cell_size = 0.350391
+sdfgi_cascade0_distance = 22.425
+sdfgi_max_distance = 179.4
+sdfgi_energy = 2.846
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 1.09
+glow_hdr_threshold = 0.0
+fog_enabled = true
+fog_light_color = Color(0.0431373, 0.0470588, 0.0117647, 1)
+fog_density = 0.1453
+volumetric_fog_density = 0.1609
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_u5i77")
+
+[node name="player" parent="." instance=ExtResource("2_vuxx2")]
+transform = Transform3D(1, 0, -2.44921e-16, 0, 1, 0, 2.44921e-16, 0, 1, 0, 1, 0)
+SPEED = 6.0
+
+[node name="tiles" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = ExtResource("3_my80b")
+size = Vector3(100, 1, 100)
+script = ExtResource("4_gwx3a")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.30896, 0)
+material_override = ExtResource("3_my80b")
+use_collision = true
+size = Vector3(100, 1, 100)
+script = SubResource("GDScript_unaok")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_s8oss")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cab83")

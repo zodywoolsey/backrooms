@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://player/console.gd" id="1_7uurr"]
+
+[sub_resource type="GDScript" id="GDScript_1e078"]
+script/source = "extends ItemList
+
+@onready var input = $\"../VSplitContainer/input\"
+@onready var base = $\"../..\"
+
+func _ready():
+	item_clicked.connect(itemClicked)
+
+func itemClicked(index, position, mouseButtonIndex):
+	input.text = get_item_text(index)
+	input.grab_focus()
+	input.caret_column = input.text.length()
+"
+
+[node name="console" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7uurr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HBoxContainer"]
+layout_mode = 2
+offset_right = 918.0
+offset_bottom = 648.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+split_offset = 1000
+dragger_visibility = 2
+
+[node name="previous" type="ItemList" parent="HBoxContainer/VSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_right = 918.0
+offset_bottom = 617.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+
+[node name="input" type="LineEdit" parent="HBoxContainer/VSplitContainer"]
+layout_mode = 2
+offset_top = 617.0
+offset_right = 918.0
+offset_bottom = 648.0
+grow_vertical = 0
+size_flags_vertical = 10
+placeholder_text = "enter a command"
+caret_blink = true
+
+[node name="ItemList" type="ItemList" parent="HBoxContainer"]
+layout_mode = 2
+offset_left = 922.0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+script = SubResource("GDScript_1e078")

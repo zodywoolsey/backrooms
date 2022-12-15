@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dota2af3dc8fg"]
+
+[ext_resource type="Material" uid="uid://c8v53qd01nupc" path="res://procedural/assets/wall.tres" id="1_bmdm6"]
+
+[node name="wall" type="Node3D"]
+metadata/part = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
+material_override = ExtResource("1_bmdm6")
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(0.5, 4, 4.5)

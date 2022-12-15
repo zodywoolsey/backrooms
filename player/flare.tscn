@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfqafosfey6tq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k3ili"]
+friction = 0.5
+bounce = 0.8
+
+[sub_resource type="GDScript" id="GDScript_vu42x"]
+script/source = "extends RigidBody3D
+
+var lifetime = 10
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	lifetime -= delta
+	if lifetime < 0:
+		queue_free()
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tlj6n"]
+radius = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a6hub"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.2
+
+[node name="flare" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_k3ili")
+continuous_cd = true
+linear_damp = 0.5
+angular_damp = 0.8
+script = SubResource("GDScript_vu42x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tlj6n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_a6hub")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_bake_mode = 0
+shadow_enabled = true
+omni_range = 10.0

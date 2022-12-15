@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bonjhmfkskdfe"]
+
+[node name="ceiling" type="Node3D"]
+metadata/part = 2
