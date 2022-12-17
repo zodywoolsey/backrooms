@@ -13,7 +13,7 @@ extends Node3D
 var toDelete = []
 var toAdd = []
 
-var size = 10
+var size = 20
 var noiseScale
 var timer = 0
 var noise :FastNoiseLite
@@ -97,6 +97,8 @@ func generate():
 						if randf() > .8:
 							tmpr = 4
 #					print(tmpr)
+					if tmpr > 5:
+						tmpr = 5
 					var tmppart : Node3D = parts[tmpr].instantiate()
 					var tmppartposition = Vector3((x+offsetx),0,(y+offsety))
 					var tmppartname = "{0},{1}".format([tmppartposition.x,tmppartposition.z])
