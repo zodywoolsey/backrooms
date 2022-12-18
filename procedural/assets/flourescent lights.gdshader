@@ -1,6 +1,5 @@
 shader_type spatial;
-render_mode blend_mix,cull_back,diffuse_burley,specular_schlick_ggx
-;
+render_mode blend_mix,cull_back,diffuse_burley,specular_schlick_ggx;
 uniform vec3 uv1_offset = vec3(1.0, 1.0, 1.0);
 uniform vec3 uv1_scale = vec3(1.0, 1.0, 1.0);
 uniform int depth_min_layers = 8;
