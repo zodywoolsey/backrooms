@@ -8,12 +8,12 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1")
-shader_parameter/depth_flip = null
-shader_parameter/depth_max_layers = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = null
 shader_parameter/depth_min_layers = null
+shader_parameter/depth_max_layers = null
+shader_parameter/depth_flip = null
+shader_parameter/variation = null
 shader_parameter/texture_1 = ExtResource("2")
 shader_parameter/texture_2 = ExtResource("3")
 shader_parameter/texture_3 = ExtResource("4")
-shader_parameter/uv1_offset = null
-shader_parameter/uv1_scale = null
-shader_parameter/variation = null

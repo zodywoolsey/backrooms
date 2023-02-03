@@ -15,6 +15,18 @@ run/main_scene="res://procedural/backrooms/main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://globals.gd"
+
+[editor]
+
+export/convert_text_resources_to_binary=true
+
+[gui]
+
+theme/custom="res://ui/theme/pupperTheme.tres"
+
 [input]
 
 forward={
@@ -60,6 +72,5 @@ shoot={
 
 [rendering]
 
-driver/threads/thread_model=2
 global_illumination/sdfgi/probe_ray_count=3
 global_illumination/sdfgi/frames_to_converge=3

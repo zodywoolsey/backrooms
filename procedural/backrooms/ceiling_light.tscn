@@ -1,33 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciwpmcxrtblou"]
+[gd_scene load_steps=3 format=3 uid="uid://ciwpmcxrtblou"]
 
 [ext_resource type="Material" uid="uid://dlx7vuy17b6wg" path="res://procedural/assets/flourescent lights.tres" id="1_umk1q"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_r3yy8"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ra2uc"]
 material = ExtResource("1_umk1q")
 size = Vector2(1, 3)
-
-[sub_resource type="GDScript" id="GDScript_pqi2o"]
-script/source = "extends SpotLight3D
-
-var player
-var timer = 0
-
-func _process(delta):
-	timer += delta
-	if timer > .1:
-		timer = 0
-		if !player:
-			player = get_tree().get_first_node_in_group('player')
-		else:
-			if global_position.distance_to(player.global_position) > 60:
-				hide()
-			else:
-				show()
-			if global_position.distance_to(player.global_position) < 30:
-				shadow_enabled = true
-			else:
-				shadow_enabled = false
-"
 
 [node name="light" type="Node3D"]
 transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, 0, 0)
@@ -35,7 +12,7 @@ metadata/part = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.37114e-08, 7.10543e-15, -1, 8.74228e-08, -1, -3.28405e-15, -1, -8.74228e-08, -4.37114e-08, 3.28952e-07, 3.76277, 3.28952e-07)
-mesh = SubResource("PlaneMesh_r3yy8")
+mesh = SubResource("PlaneMesh_ra2uc")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D"]
 transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 6.12367e-17, -1, 4.37114e-08, 1, 1.97192e-15, 0, 0, 0)
@@ -46,4 +23,3 @@ light_size = 0.206
 shadow_enabled = true
 spot_range = 19.817
 spot_angle = 74.4251
-script = SubResource("GDScript_pqi2o")
