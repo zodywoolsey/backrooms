@@ -27,8 +27,8 @@ func _physics_process(delta):
 		velocity.y -= currentFallSpeed * delta
 	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if Input.is_action_just_pressed("ui_cancel"):
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#		if Input.is_action_just_pressed("ui_cancel"):
+#			Globals.UI_STATE = 1
 			
 		input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
@@ -54,9 +54,9 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			rotate(Vector3.UP, ((-mouseMotion.x/100000)*MOUSE_SENSITIVITY) )
 			camera.rotate(Vector3.RIGHT, ((-mouseMotion.y/100000)*MOUSE_SENSITIVITY))
-	if event is InputEventMouseButton:
-		if event.pressed:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#	if event is InputEventMouseButton:
+#		if event.pressed:
+#			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func jump():
 	if is_on_floor():

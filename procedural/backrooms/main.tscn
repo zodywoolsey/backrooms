@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btmo0d70evqru"]
+[gd_scene load_steps=11 format=3 uid="uid://btmo0d70evqru"]
 
 [ext_resource type="Script" path="res://procedural/backrooms/scripts/procedural.gd" id="1_u5i77"]
 [ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="2_vuxx2"]
@@ -39,6 +39,15 @@ fog_light_color = Color(0.0431373, 0.0470588, 0.0117647, 1)
 fog_density = 0.1453
 volumetric_fog_density = 0.1609
 
+[sub_resource type="GDScript" id="GDScript_kh0oj"]
+script/source = "extends WorldEnvironment
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Globals.environment = environment
+"
+
 [node name="main" type="Node3D"]
 script = ExtResource("1_u5i77")
 
@@ -68,3 +77,4 @@ shape = SubResource("WorldBoundaryShape3D_s8oss")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cab83")
+script = SubResource("GDScript_kh0oj")
