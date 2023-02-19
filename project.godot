@@ -69,7 +69,6 @@ shoot={
 
 [rendering]
 
-driver/threads/thread_model=2
 lights_and_shadows/directional_shadow/size=8192
 global_illumination/sdfgi/probe_ray_count=3
 global_illumination/sdfgi/frames_to_converge=3
