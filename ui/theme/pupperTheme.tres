@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://0ko6t7f3hguj"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://0ko6t7f3hguj"]
 
 [ext_resource type="FontFile" uid="uid://fleurw4qtj6" path="res://ui/theme/OpenSans-VariableFont_wdth,wght.ttf" id="1_xqss4"]
 
@@ -204,6 +204,13 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwxom"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.141176, 0, 0.141176, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krn16"]
 content_margin_left = 6.0
 content_margin_top = 6.0
@@ -292,6 +299,7 @@ Tree/fonts/title_button_font = ExtResource("1_xqss4")
 VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_5acex")
 VSlider/styles/slider = SubResource("StyleBoxFlat_dhx04")
 Window/font_sizes/title_font_size = 16
+flatPanel/styles/panel = SubResource("StyleBoxFlat_dwxom")
 transparentButton/styles/hover = SubResource("StyleBoxFlat_krn16")
 transparentButton/styles/normal = SubResource("StyleBoxFlat_u6wh5")
 transparentHSeparator/base_type = &"HSeparator"

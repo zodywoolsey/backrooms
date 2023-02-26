@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://17g656p7rhqu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfapg"]
+cull_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_qc0kr"]
+
+[sub_resource type="GDScript" id="GDScript_qq1pg"]
+script/source = "extends MeshInstance3D
+
+var mat : StandardMaterial3D
+var active := false
+
+func _process(delta):
+	if global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 5:
+		if Input.is_action_just_pressed(\"activate\"):
+			active = true
+			print('activated')
+	if active:
+		mat = material_override
+		mat.emission = lerp(mat.emission,Color(0,.5,0),.01)
+		mat.albedo_color = lerp(mat.albedo_color, Color(.5,.5,.5),.01)
+"
+
+[node name="ball" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+material_override = SubResource("StandardMaterial3D_yfapg")
+mesh = SubResource("SphereMesh_qc0kr")
+script = SubResource("GDScript_qq1pg")

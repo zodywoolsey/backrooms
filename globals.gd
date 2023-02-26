@@ -7,15 +7,15 @@ var pause : Control
 
 var settings : Dictionary = {
 	"SDFGI": {
-		"enabled": true,
+		"enabled": false,
 		"useOcclusion": true,
-		"bounceFeedback": .8,
+		"bounceFeedback": .85,
 		"cascades": 4,
 		"minCellSize": .2,
 		"cascade0Distance": 13,
 		"maxDistance": 210.0,
 		"yScale": Environment.SDFGI_Y_SCALE_100_PERCENT,
-		"energy": 3.5,
+		"energy": 5.0,
 		"normalBias": 1.1,
 		"probeBias": 1.1
 	},
@@ -31,7 +31,10 @@ var settings : Dictionary = {
 	}
 }
 
-@export_enum("main","pause","none") var UI_STATE : int = 1
+@export_enum("main","pause","none") var UI_STATE : int = 2
+
+func _ready():
+	find_player()
 
 func _process(delta):
 	if pause:

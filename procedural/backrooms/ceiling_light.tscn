@@ -12,8 +12,14 @@ script/source = "extends SpotLight3D
 func _process(delta):
 	if Globals.settings[\"SDFGI\"][\"enabled\"]:
 		visible = false
-	else:
+	elif global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 30:
 		visible = true
+		shadow_enabled = true
+	elif global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 50:
+		visible = true
+		shadow_enabled = false
+	else:
+		visible = false
 "
 
 [node name="light" type="Node3D"]

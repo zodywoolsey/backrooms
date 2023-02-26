@@ -11,6 +11,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rtx3w")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"flatPanel"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -52,7 +61,7 @@ offset_right = 30.5
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "enabled"
+text = "Fancy Lighting"
 
 [node name="Control2" type="Control" parent="ScrollContainer/settings/enabled"]
 layout_mode = 2
@@ -74,6 +83,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="use occlusion" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -120,6 +130,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="bounce feedback" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -173,6 +184,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="cascades" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -223,6 +235,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="min cell size" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -273,6 +286,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="cascade 0 distance" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -323,6 +337,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="max distance" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -374,6 +389,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="y scale" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -423,6 +439,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="energy" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -473,6 +490,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="normal bias" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -523,6 +541,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="probe bias" type="HBoxContainer" parent="ScrollContainer/settings"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -570,6 +589,7 @@ layout_mode = 2
 theme_type_variation = &"transparentHSeparator"
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.98

@@ -6,8 +6,7 @@
 
 [node name="game" type="Node3D"]
 
-[node name="mainMenu" parent="." instance=ExtResource("1_04tni")]
-visible = false
+[node name="mainMenu" parent="." groups=["mainMenu"] instance=ExtResource("1_04tni")]
 
 [node name="world" type="Node3D" parent="." groups=["world"]]
 
