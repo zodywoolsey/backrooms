@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dk1ngubdkvr84" path="res://player/menu/mainMenu.tscn" id="1_04tni"]
 [ext_resource type="PackedScene" uid="uid://ck3o462ufe57q" path="res://player/menu/pauseMenu.tscn" id="2_8tvar"]
-[ext_resource type="PackedScene" uid="uid://btmo0d70evqru" path="res://procedural/backrooms/main.tscn" id="2_cfrhl"]
+[ext_resource type="AudioStream" uid="uid://cmt2c1xlepema" path="res://assets/audio/Deep Space Travel Background Noise.mp3" id="4_3x36v"]
 
 [node name="game" type="Node3D"]
 
@@ -10,6 +10,10 @@
 
 [node name="world" type="Node3D" parent="." groups=["world"]]
 
-[node name="main" parent="world" instance=ExtResource("2_cfrhl")]
-
 [node name="pauseMenu" parent="." instance=ExtResource("2_8tvar")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3x36v")
+volume_db = -21.802
+pitch_scale = 0.7
+autoplay = true

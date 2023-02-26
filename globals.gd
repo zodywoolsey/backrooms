@@ -4,6 +4,7 @@ var player : CharacterBody3D
 var world : Node3D
 var environment : Environment
 var pause : Control
+var seed : String = "10"
 
 var settings : Dictionary = {
 	"SDFGI": {
@@ -28,10 +29,13 @@ var settings : Dictionary = {
 		"hdrThreshold": 0.0,
 		"hdrScale": 2.0,
 		"hdrLuminanceCap": 12.0
+	},
+	"Fog": {
+		"enabled": true
 	}
 }
 
-@export_enum("main","pause","none") var UI_STATE : int = 2
+@export_enum("main","pause","none") var UI_STATE : int = 1
 
 func _ready():
 	find_player()
@@ -104,3 +108,12 @@ func setSDFGI(newSettings:Dictionary):
 	environment.sdfgi_energy = settings["SDFGI"]["energy"]
 	environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
 	environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]
+
+func setFog(newSettings:Dictionary):
+	if !environment:
+		find_environment()
+	if newSettings.has("enabled") and newSettings["enabled"] is bool:
+		settings["Fog"]["enabled"] = newSettings["enabled"]
+	
+	environment.volumetric_fog_enabled = settings["Fog"]["enabled"]
+	

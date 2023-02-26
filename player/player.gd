@@ -4,8 +4,13 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY : float = 5
 @export var GRAVITY : float = 10
 @export var MOUSE_SENSITIVITY : float = 100
+@export var HEADBOB_INTENSITY : float = 0.01
+var hbi
+@export var HEADBOB_SPEED : float = 1.0
+var hbs
 var currentFallSpeed
-@onready var camera : Camera3D = $Camera3D
+@onready var camera : Camera3D = $cameraParent/Camera3D
+@onready var camera_parent = $cameraParent
 @onready var flare = preload("res://player/flare.tscn")
 var direction
 var mouseMotion : Vector2
@@ -16,9 +21,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	currentFallSpeed = GRAVITY
+	hbs = HEADBOB_SPEED
+	hbi = HEADBOB_INTENSITY
 
 func _physics_process(delta):
 	#print(1/delta)
+	var currentspeed = SPEED
 	shootTimer += delta
 	var input_dir = Vector2()
 	direction = Vector3()
@@ -33,19 +41,29 @@ func _physics_process(delta):
 		input_dir = Input.get_vector("left", "right", "forward", "backward")
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 		
-#		if Input.is_action_just_pressed("jump"):
-#			jumped = jump()
-
-
+		if Input.is_action_just_pressed("jump"):
+			jumped = jump()
+	
+	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if Input.is_action_pressed("run"):
+			currentspeed*=2.0
+			hbs = HEADBOB_SPEED*16.0
+			hbi = HEADBOB_INTENSITY*2.0
+		else:
+			hbs = HEADBOB_SPEED*8.0
+			hbi = HEADBOB_INTENSITY*1.5
+		velocity.x = direction.x * currentspeed
+		velocity.z = direction.z * currentspeed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, currentspeed)
+		velocity.z = move_toward(velocity.z, 0, currentspeed)
+		hbs = HEADBOB_SPEED
+		hbi = HEADBOB_INTENSITY
 	
 	move_and_slide()
 	mouseMotion = Vector2()
+	camera_parent.position = lerp(Vector3(0,.5-hbi,0),Vector3(0,.5+hbi,0),sin(Time.get_unix_time_from_system()*hbs))
 
 
 func _input(event):

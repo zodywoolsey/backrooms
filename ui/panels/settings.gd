@@ -14,9 +14,6 @@ extends Control
 func _ready():
 	setValues()
 	Globals.pause = self
-	enabled_2.toggled.connect(func (val):
-		Globals.setSDFGI({"enabled":val})
-		)
 	use_occlusion_2.toggled.connect(func (val):
 		Globals.setSDFGI({"useOcclusion":val})
 		)

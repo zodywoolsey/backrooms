@@ -1,11 +1,15 @@
 extends Control
 
+var main = preload("res://procedural/backrooms/main.tscn")
+@onready var label = $HBoxContainer/Panel/VBoxContainer/Label
+@onready var line_edit = $LineEdit
 
-# Called when the node enters the scene tree for the first time.
+@onready var button = $HBoxContainer/Panel/VBoxContainer/Button
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	button.pressed.connect(func():
+		Globals.seed = line_edit.text
+		get_tree().get_first_node_in_group("world").add_child(main.instantiate())
+		label.show()
+		button.hide()
+		)

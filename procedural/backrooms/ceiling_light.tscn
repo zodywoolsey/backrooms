@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciwpmcxrtblou"]
+[gd_scene load_steps=6 format=3 uid="uid://ciwpmcxrtblou"]
 
 [ext_resource type="Material" uid="uid://dlx7vuy17b6wg" path="res://procedural/assets/flourescent lights.tres" id="1_umk1q"]
+[ext_resource type="AudioStream" uid="uid://buuc2cwohdqd6" path="res://assets/audio/Neon Lighting Hum.mp3" id="2_y5vft"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ra2uc"]
 material = ExtResource("1_umk1q")
@@ -20,6 +21,15 @@ func _process(delta):
 		shadow_enabled = false
 	else:
 		visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_xnkkb"]
+resource_local_to_scene = true
+script/source = "extends AudioStreamPlayer3D
+
+func _ready():
+	if [false,true].pick_random():
+		playing = true
 "
 
 [node name="light" type="Node3D"]
@@ -44,3 +54,10 @@ distance_fade_shadow = 30.0
 spot_range = 19.817
 spot_angle = 74.4251
 script = SubResource("GDScript_gryhi")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_y5vft")
+volume_db = -22.191
+max_distance = 10.0
+doppler_tracking = 1
+script = SubResource("GDScript_xnkkb")

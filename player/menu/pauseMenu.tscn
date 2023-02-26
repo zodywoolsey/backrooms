@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://by4v1amyeerii" path="res://ui/panels/settings.tscn" id="2_a2f81"]
 
 [node name="pauseMenu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,5 +12,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" parent="." instance=ExtResource("2_a2f81")]
-visible = false
 layout_mode = 1

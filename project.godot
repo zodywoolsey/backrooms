@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.0", "Forward Plus")
 boot_splash/bg_color=Color(0.258824, 0.258824, 0.258824, 1)
 boot_splash/image="res://t_pupper.png"
 config/icon="res://icon.png"
-config/windows_native_icon="res://icon.ico"
+config/windows_native_icon="res://favicon.ico"
 
 [autoload]
 
@@ -75,10 +75,17 @@ activate={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(109, 23),"global_position":Vector2(113, 66),"factor":1.0,"button_index":1,"pressed":true,"double_click":false,"script":null)
 ]
 }
+run={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [rendering]
 
 lights_and_shadows/directional_shadow/size=8192
 global_illumination/sdfgi/probe_ray_count=3
 global_illumination/sdfgi/frames_to_converge=3
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/use_debanding=true
 lights_and_shadows/positional_shadow/atlas_size=8192

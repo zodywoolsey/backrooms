@@ -11,7 +11,7 @@ extends Node3D
 @onready var tiles = $tiles
 
 var mutex = Mutex.new()
-var size = 25
+var size = 20
 var timer = 0
 var player
 var thread = Thread.new()
@@ -20,7 +20,6 @@ var delThread = Thread.new()
 var toadd := []
 var current := []
 var todel := []
-var custSeed = 10
 var manualPos :Array = [
 	"16,16",
 	"64,8",
@@ -32,17 +31,26 @@ var manualTiles :Array = [
 	preload("res://procedural/backrooms/ball.tscn")
 ]
 
+var fogfix = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("player")
 	thread.start(tileManager)
 
 func _process(delta):
+	print(current.size())
 	addTile()
+	if fogfix:
+		Globals.setFog({'enabled':true})
+		get_tree().get_first_node_in_group("mainMenu").visible = false
+		Globals.UI_STATE = 2
+		fogfix = false
 	if get_tree().get_first_node_in_group("mainMenu").visible and toadd.size() < 10:
 		Globals.setSDFGI({'enabled':false})
 #		Globals.setSDFGI({'enabled':true})
-		get_tree().get_first_node_in_group("mainMenu").visible = false
+		Globals.setFog({'enabled':false})
+		fogfix = true
 #	if !addThread.is_alive() and toadd.size() > 1:
 #		if addThread.is_started():
 #			addThread.wait_to_finish()
@@ -55,12 +63,11 @@ func addTile():
 			for i in range(10):
 				var tmp:String = toadd.pop_back()
 				var tmpadd = toadd
-				var tmpcur = current
-				if tmp not in tmpcur:
-					tmpcur.append(tmp)
+				if tmp not in current:
+					current.append(tmp)
 					var x : int = tmp.split(",")[0].to_int()
 					var y : int = tmp.split(",")[1].to_int()
-					var tmpi : int = (tmp.replace(',','')+str(custSeed)).to_int()
+					var tmpi : int = (tmp.replace(',','')+str(Globals.seed.hash())).to_int()
 					seed(tmpi)
 					var tmpr : int = randi_range(0,5)
 					var tmpTile
@@ -70,6 +77,7 @@ func addTile():
 						tmpTile = parts[tmpr].instantiate()
 					tiles.add_child(tmpTile)
 					tmpTile.global_position = Vector3(x,0,y)
+					tmpTile.add_to_group(tmp)
 #					print('created: {0},{1} of type {2}'.format([x,y,tmpr]))
 		elif toadd.size() > 0:
 			for i in range(toadd.size()):
@@ -80,21 +88,29 @@ func addTile():
 					tmpcur.append(tmp)
 					var x : int = tmp.split(",")[0].to_int()
 					var y : int = tmp.split(",")[1].to_int()
-					var tmpi : int = (tmp.replace(',','')+str(custSeed)).to_int()
+					var tmpi : int = (tmp.replace(',','')+str(Globals.seed.hash())).to_int()
 					seed(tmpi)
 					var tmpr : int = randi_range(0,5)
 					var tmpTile = parts[tmpr].instantiate()
 					tiles.add_child(tmpTile)
 					tmpTile.global_position = Vector3(x,0,y)
+					tmpTile.add_to_group(tmp)
 #					print('created: {0},{1} of type {2}'.format([x,y,tmpr]))
 		mutex.unlock()
 
 func delTile():
-	if todel.size() > 0:
-		pass
+	if mutex.try_lock():
+		for tile in current:
+			var tmp = get_tree().get_first_node_in_group(tile)
+#				print(global_position.distance_to(player.global_position))
+			if tmp.global_position.distance_to(player.global_position) > (size/2)*6:
+				tmp.queue_free()
+				current.remove_at(current.find(tile))
+		mutex.unlock()
 
 func tileManager():
 	while true:
+		delTile()
 		var playerpos = player.global_position
 		for a in range(size):
 			var x = snappedi(int(((a-(size/2))*4)+playerpos.x),4)

@@ -54,7 +54,6 @@ script = ExtResource("1_f2rii")
 
 [node name="player" parent="." instance=ExtResource("2_vuxx2")]
 transform = Transform3D(1, 0, -2.44921e-16, 0, 1, 0, 2.44921e-16, 0, 1, 0, 1, 0)
-SPEED = 6.0
 
 [node name="tiles" type="Node3D" parent="."]
 
