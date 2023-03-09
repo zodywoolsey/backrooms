@@ -1,12 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqhomu0wkoqfa"]
+[gd_scene load_steps=4 format=3 uid="uid://dqhomu0wkoqfa"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_g2ams"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_of3yi"]
 
+[sub_resource type="GDScript" id="GDScript_yjfek"]
+script/source = "extends Node3D
+
+var pickedObject :Camera3D
+var placed = false
+
+func _ready():
+	pickedObject = get_tree().get_first_node_in_group('handCam')
+
+
+func _process(delta):
+	if pickedObject and !placed:
+		pickedObject.global_position.x = lerpf(pickedObject.global_position.x, global_position.x, .1)
+		pickedObject.global_position.y = lerpf(pickedObject.global_position.y, global_position.y, .1)
+		pickedObject.global_position.z = lerpf(pickedObject.global_position.z, global_position.z, .1)
+		
+		pickedObject.global_rotation.x = lerp_angle(pickedObject.global_rotation.x, global_rotation.x,.1)
+		pickedObject.global_rotation.y = lerp_angle(pickedObject.global_rotation.y, global_rotation.y,.1)
+		pickedObject.global_rotation.z = lerp_angle(pickedObject.global_rotation.z, global_rotation.z,.1)
+"
+
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_g2ams")
+JUMP_VELOCITY = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_of3yi")
@@ -18,3 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="cameraParent/Camera3D"]
 target_position = Vector3(0, 0, -1000)
+
+[node name="hand" type="Node3D" parent="cameraParent/Camera3D" groups=["hand"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567737, -0.329445, -1.39456)
+script = SubResource("GDScript_yjfek")

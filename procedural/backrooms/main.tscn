@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://btmo0d70evqru"]
+[gd_scene load_steps=15 format=3 uid="uid://btmo0d70evqru"]
 
 [ext_resource type="Script" path="res://procedural/backrooms/scripts/procedural-new.gd" id="1_f2rii"]
 [ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="2_vuxx2"]
 [ext_resource type="Material" uid="uid://b7p4luj0f0jkc" path="res://procedural/assets/floor.tres" id="3_my80b"]
 [ext_resource type="Script" path="res://procedural/backrooms/CSGBox3D.gd" id="4_gwx3a"]
+[ext_resource type="PackedScene" uid="uid://ciwpmcxrtblou" path="res://procedural/backrooms/ceiling_light.tscn" id="5_mxp3d"]
+[ext_resource type="PackedScene" uid="uid://b0vihhs84axsp" path="res://procedural/backrooms/crt.tscn" id="6_7vcdr"]
 
 [sub_resource type="GDScript" id="GDScript_unaok"]
 script/source = "extends CSGBox3D
@@ -15,6 +17,11 @@ func _process(delta):
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_s8oss"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31744"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_721s7"]
+noise = SubResource("FastNoiseLite_31744")
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xu8by"]
 
 [sub_resource type="Sky" id="Sky_p44iy"]
@@ -24,20 +31,19 @@ sky_material = SubResource("ProceduralSkyMaterial_xu8by")
 background_mode = 1
 background_color = Color(0.121569, 0.180392, 0.121569, 1)
 sky = SubResource("Sky_p44iy")
-sdfgi_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_read_sky_light = false
-sdfgi_bounce_feedback = 0.8
 sdfgi_y_scale = 2
 sdfgi_energy = 3.5
 glow_enabled = true
-glow_intensity = 8.0
-glow_strength = 1.09
+glow_intensity = 1.5
+glow_bloom = 0.05
 glow_hdr_threshold = 0.0
+glow_map = SubResource("NoiseTexture2D_721s7")
 fog_light_color = Color(0.0431373, 0.0470588, 0.0117647, 1)
 fog_density = 0.1453
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.2
+volumetric_fog_density = 0.04
 volumetric_fog_gi_inject = 2.0
 
 [sub_resource type="GDScript" id="GDScript_kh0oj"]
@@ -78,3 +84,8 @@ shape = SubResource("WorldBoundaryShape3D_s8oss")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cab83")
 script = SubResource("GDScript_kh0oj")
+
+[node name="light" parent="." instance=ExtResource("5_mxp3d")]
+
+[node name="crt" parent="." instance=ExtResource("6_7vcdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0733507, 1.02519, -4.28266)

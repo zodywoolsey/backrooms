@@ -11,7 +11,7 @@ extends Node3D
 @onready var tiles = $tiles
 
 var mutex = Mutex.new()
-var size = 20
+var size = 30
 var timer = 0
 var player
 var thread = Thread.new()
@@ -39,18 +39,21 @@ func _ready():
 	thread.start(tileManager)
 
 func _process(delta):
-	print(current.size())
+#	print(current.size())
 	addTile()
 	if fogfix:
 		Globals.setFog({'enabled':true})
 		get_tree().get_first_node_in_group("mainMenu").visible = false
 		Globals.UI_STATE = 2
 		fogfix = false
-	if get_tree().get_first_node_in_group("mainMenu").visible and toadd.size() < 10:
-		Globals.setSDFGI({'enabled':false})
-#		Globals.setSDFGI({'enabled':true})
-		Globals.setFog({'enabled':false})
-		fogfix = true
+		Globals.applySettings()
+	if get_tree().get_first_node_in_group("mainMenu").visible:
+		Globals.loadingProgress = remap(current.size(),0,size*size,0.0,100.0)
+		if toadd.size() < 10:
+			Globals.setSDFGI({'enabled':false})
+	#		Globals.setSDFGI({'enabled':true})
+			Globals.setFog({'enabled':false})
+			fogfix = true
 #	if !addThread.is_alive() and toadd.size() > 1:
 #		if addThread.is_started():
 #			addThread.wait_to_finish()
@@ -103,7 +106,7 @@ func delTile():
 		for tile in current:
 			var tmp = get_tree().get_first_node_in_group(tile)
 #				print(global_position.distance_to(player.global_position))
-			if tmp.global_position.distance_to(player.global_position) > (size/2)*6:
+			if tmp.global_position.distance_to(player.global_position) > (size/2)*6 and tmp.global_position.distance_to(get_tree().get_first_node_in_group('handCam').global_position) > (size/2)*4:
 				tmp.queue_free()
 				current.remove_at(current.find(tile))
 		mutex.unlock()

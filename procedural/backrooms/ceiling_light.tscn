@@ -13,10 +13,10 @@ script/source = "extends SpotLight3D
 func _process(delta):
 	if Globals.settings[\"SDFGI\"][\"enabled\"]:
 		visible = false
-	elif global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 30:
+	elif global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 30 or global_position.distance_to(get_tree().get_first_node_in_group(\"handCam\").global_position) < 20:
 		visible = true
 		shadow_enabled = true
-	elif global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 50:
+	elif global_position.distance_to(get_tree().get_first_node_in_group(\"player\").global_position) < 50 or global_position.distance_to(get_tree().get_first_node_in_group(\"handCam\").global_position) < 30:
 		visible = true
 		shadow_enabled = false
 	else:
@@ -28,8 +28,7 @@ resource_local_to_scene = true
 script/source = "extends AudioStreamPlayer3D
 
 func _ready():
-	if [false,true].pick_random():
-		playing = true
+	playing = [true,false].pick_random()
 "
 
 [node name="light" type="Node3D"]
@@ -57,7 +56,7 @@ script = SubResource("GDScript_gryhi")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_y5vft")
-volume_db = -22.191
-max_distance = 10.0
+volume_db = -17.859
+max_distance = 20.0
 doppler_tracking = 1
 script = SubResource("GDScript_xnkkb")

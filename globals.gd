@@ -5,6 +5,7 @@ var world : Node3D
 var environment : Environment
 var pause : Control
 var seed : String = "10"
+var loadingProgress := 0
 
 var settings : Dictionary = {
 	"SDFGI": {
@@ -22,9 +23,9 @@ var settings : Dictionary = {
 	},
 	"Glow": {
 		"enabled": true,
-		"intensity": 8.0,
+		"intensity": 1.0,
 		"strength": 1.1,
-		"bloom": 0.8,
+		"bloom": 0.2,
 		"blendMode": Environment.GLOW_BLEND_MODE_SOFTLIGHT,
 		"hdrThreshold": 0.0,
 		"hdrScale": 2.0,
@@ -39,6 +40,7 @@ var settings : Dictionary = {
 
 func _ready():
 	find_player()
+	find_environment()
 
 func _process(delta):
 	if pause:
@@ -117,3 +119,18 @@ func setFog(newSettings:Dictionary):
 	
 	environment.volumetric_fog_enabled = settings["Fog"]["enabled"]
 	
+
+func applySettings():
+	if environment:
+		#apply initial settings:
+		environment.sdfgi_enabled = settings["SDFGI"]["enabled"]
+		environment.sdfgi_use_occlusion = settings["SDFGI"]["useOcclusion"]
+		environment.sdfgi_bounce_feedback = settings["SDFGI"]["bounceFeedback"]
+		environment.sdfgi_cascades = settings["SDFGI"]["cascades"]
+		environment.sdfgi_min_cell_size = settings["SDFGI"]["minCellSize"]
+		environment.sdfgi_cascade0_distance = settings["SDFGI"]["cascade0Distance"]
+		environment.sdfgi_max_distance = settings["SDFGI"]["maxDistance"]
+		environment.sdfgi_y_scale = settings["SDFGI"]["yScale"]
+		environment.sdfgi_energy = settings["SDFGI"]["energy"]
+		environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
+		environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]

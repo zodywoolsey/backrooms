@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bxidwpgyb610k"]
+
+[ext_resource type="Texture2D" uid="uid://bes7n0d70m2v8" path="res://assets/materials/rgb.jpg" id="1_b4crt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oorqp"]
+blend_mode = 3
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("1_b4crt")
+uv1_scale = Vector3(200, 200, 200)
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_oorqp")
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 8192.0
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_offset = Vector3(0.5, 0, 0.5)
+uv1_triplanar = true
+uv2_scale = Vector3(200, 200, 200)

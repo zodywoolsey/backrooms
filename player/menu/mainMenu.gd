@@ -5,6 +5,7 @@ var main = preload("res://procedural/backrooms/main.tscn")
 @onready var line_edit = $LineEdit
 
 @onready var button = $HBoxContainer/Panel/VBoxContainer/Button
+@onready var loading_bar = $HBoxContainer/Panel/VBoxContainer/Label/loadingBar
 
 func _ready():
 	button.pressed.connect(func():
@@ -13,3 +14,6 @@ func _ready():
 		label.show()
 		button.hide()
 		)
+
+func _process(delta):
+	loading_bar.value = Globals.loadingProgress

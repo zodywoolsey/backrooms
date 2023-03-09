@@ -15,6 +15,7 @@ var currentFallSpeed
 var direction
 var mouseMotion : Vector2
 var shootTimer = 0
+@onready var hand = $cameraParent/Camera3D/hand
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -61,6 +62,18 @@ func _physics_process(delta):
 		hbs = HEADBOB_SPEED
 		hbi = HEADBOB_INTENSITY
 	
+	if Input.is_action_just_pressed('shoot'):
+		hand.placed = !hand.placed
+	if Input.is_action_just_released("zoomout"):
+		if hand.pickedObject:
+			if hand.pickedObject.fov < 110:
+				hand.pickedObject.fov += 5
+	if Input.is_action_just_released("zoomin"):
+		if hand.pickedObject:
+			if hand.pickedObject.fov > 10:
+				hand.pickedObject.fov -= 5
+	
+	
 	move_and_slide()
 	mouseMotion = Vector2()
 	camera_parent.position = lerp(Vector3(0,.5-hbi,0),Vector3(0,.5+hbi,0),sin(Time.get_unix_time_from_system()*hbs))
@@ -72,6 +85,7 @@ func _input(event):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			rotate(Vector3.UP, ((-mouseMotion.x/100000)*MOUSE_SENSITIVITY) )
 			camera.rotate(Vector3.RIGHT, ((-mouseMotion.y/100000)*MOUSE_SENSITIVITY))
+			
 #	if event is InputEventMouseButton:
 #		if event.pressed:
 #			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
