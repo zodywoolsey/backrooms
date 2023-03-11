@@ -31,6 +31,7 @@ sky_material = SubResource("ProceduralSkyMaterial_xu8by")
 background_mode = 1
 background_color = Color(0.121569, 0.180392, 0.121569, 1)
 sky = SubResource("Sky_p44iy")
+sdfgi_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_read_sky_light = false
 sdfgi_y_scale = 2
@@ -43,8 +44,9 @@ glow_map = SubResource("NoiseTexture2D_721s7")
 fog_light_color = Color(0.0431373, 0.0470588, 0.0117647, 1)
 fog_density = 0.1453
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.04
-volumetric_fog_gi_inject = 2.0
+volumetric_fog_density = 0.0742
+volumetric_fog_temporal_reprojection_enabled = false
+volumetric_fog_temporal_reprojection_amount = 0.99
 
 [sub_resource type="GDScript" id="GDScript_kh0oj"]
 script/source = "extends WorldEnvironment

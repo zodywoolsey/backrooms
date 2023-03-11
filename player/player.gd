@@ -62,16 +62,16 @@ func _physics_process(delta):
 		hbs = HEADBOB_SPEED
 		hbi = HEADBOB_INTENSITY
 	
-	if Input.is_action_just_pressed('shoot'):
+	if Input.is_action_just_pressed('shoot') and global_position.distance_to(hand.pickedObject.global_position) < 3:
 		hand.placed = !hand.placed
 	if Input.is_action_just_released("zoomout"):
-		if hand.pickedObject:
-			if hand.pickedObject.fov < 110:
-				hand.pickedObject.fov += 5
+		if hand.pickedObject.is_in_group('handCamBody'):
+			if get_tree().get_first_node_in_group('handCam').fov < 110:
+				get_tree().get_first_node_in_group('handCam').fov += 5
 	if Input.is_action_just_released("zoomin"):
-		if hand.pickedObject:
-			if hand.pickedObject.fov > 10:
-				hand.pickedObject.fov -= 5
+		if hand.pickedObject.is_in_group('handCamBody'):
+			if get_tree().get_first_node_in_group('handCam').fov > 10:
+				get_tree().get_first_node_in_group('handCam').fov -= 5
 	
 	
 	move_and_slide()

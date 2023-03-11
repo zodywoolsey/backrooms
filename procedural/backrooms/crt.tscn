@@ -64,7 +64,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_nvgls"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_yvfva"]
 resource_local_to_scene = true
 resource_name = "CRTTV_Cylinder062"
 _surfaces = [{
@@ -97,4 +97,4 @@ shadow_mesh = SubResource("ArrayMesh_c7a1s")
 [node name="crt" type="Node3D"]
 
 [node name="CRTTV2" parent="." instance=ExtResource("1_yyt1o")]
-mesh = SubResource("ArrayMesh_nvgls")
+mesh = SubResource("ArrayMesh_yvfva")

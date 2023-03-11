@@ -7,22 +7,26 @@
 [sub_resource type="GDScript" id="GDScript_yjfek"]
 script/source = "extends Node3D
 
-var pickedObject :Camera3D
+var pickedObject :RigidBody3D
 var placed = false
+var handSpeed = .2
 
 func _ready():
-	pickedObject = get_tree().get_first_node_in_group('handCam')
+	pickedObject = get_tree().get_first_node_in_group('handCamBody')
 
 
 func _process(delta):
 	if pickedObject and !placed:
-		pickedObject.global_position.x = lerpf(pickedObject.global_position.x, global_position.x, .1)
-		pickedObject.global_position.y = lerpf(pickedObject.global_position.y, global_position.y, .1)
-		pickedObject.global_position.z = lerpf(pickedObject.global_position.z, global_position.z, .1)
+		pickedObject.freeze = true
+		pickedObject.global_position.x = lerpf(pickedObject.global_position.x, global_position.x, handSpeed)
+		pickedObject.global_position.y = lerpf(pickedObject.global_position.y, global_position.y, handSpeed)
+		pickedObject.global_position.z = lerpf(pickedObject.global_position.z, global_position.z, handSpeed)
 		
-		pickedObject.global_rotation.x = lerp_angle(pickedObject.global_rotation.x, global_rotation.x,.1)
-		pickedObject.global_rotation.y = lerp_angle(pickedObject.global_rotation.y, global_rotation.y,.1)
-		pickedObject.global_rotation.z = lerp_angle(pickedObject.global_rotation.z, global_rotation.z,.1)
+		pickedObject.global_rotation.x = lerp_angle(pickedObject.global_rotation.x, global_rotation.x,handSpeed)
+		pickedObject.global_rotation.y = lerp_angle(pickedObject.global_rotation.y, global_rotation.y,handSpeed)
+		pickedObject.global_rotation.z = lerp_angle(pickedObject.global_rotation.z, global_rotation.z,handSpeed)
+	elif pickedObject and placed:
+		pickedObject.freeze = false
 "
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
