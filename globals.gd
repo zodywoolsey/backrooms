@@ -22,7 +22,7 @@ var settings : Dictionary = {
 		"probeBias": 1.1
 	},
 	"Glow": {
-		"enabled": true,
+		"enabled": false,
 		"intensity": 1.0,
 		"strength": 1.1,
 		"bloom": 0.2,
@@ -32,7 +32,7 @@ var settings : Dictionary = {
 		"hdrLuminanceCap": 12.0
 	},
 	"Fog": {
-		"enabled": true
+		"enabled": false
 	}
 }
 

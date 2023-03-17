@@ -35,7 +35,7 @@ var fogfix = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_node("player")
+	player = get_tree().get_first_node_in_group("player")
 	thread.start(tileManager)
 
 func _process(delta):

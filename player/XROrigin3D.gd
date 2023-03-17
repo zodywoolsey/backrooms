@@ -1,4 +1,4 @@
-extends XROrigin3D
+extends Node
 
 var interface : XRInterface
 

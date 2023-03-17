@@ -22,6 +22,10 @@ config/windows_native_icon="res://favicon.ico"
 
 Globals="*res://globals.gd"
 
+[display]
+
+window/subwindows/embed_subwindows=false
+
 [gui]
 
 theme/custom="res://ui/theme/pupperTheme.tres"
@@ -99,4 +103,11 @@ global_illumination/sdfgi/frames_to_converge=3
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/use_debanding=true
+vrs/mode=2
 lights_and_shadows/positional_shadow/atlas_size=8192
+
+[xr]
+
+openxr/enabled=true
+openxr/submit_depth_buffer=true
+shaders/enabled=true
