@@ -99,17 +99,17 @@ func setSDFGI(newSettings:Dictionary):
 	if newSettings.has("probeBias") and newSettings["probeBias"] is float:
 		settings["SDFGI"]["probeBias"] = newSettings["probeBias"]
 	
-#	environment.sdfgi_enabled = settings["SDFGI"]["enabled"]
-#	environment.sdfgi_use_occlusion = settings["SDFGI"]["useOcclusion"]
-#	environment.sdfgi_bounce_feedback = settings["SDFGI"]["bounceFeedback"]
-#	environment.sdfgi_cascades = settings["SDFGI"]["cascades"]
-#	environment.sdfgi_min_cell_size = settings["SDFGI"]["minCellSize"]
-#	environment.sdfgi_cascade0_distance = settings["SDFGI"]["cascade0Distance"]
-#	environment.sdfgi_max_distance = settings["SDFGI"]["maxDistance"]
-#	environment.sdfgi_y_scale = settings["SDFGI"]["yScale"]
-#	environment.sdfgi_energy = settings["SDFGI"]["energy"]
-#	environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
-#	environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]
+	environment.sdfgi_enabled = settings["SDFGI"]["enabled"]
+	environment.sdfgi_use_occlusion = settings["SDFGI"]["useOcclusion"]
+	environment.sdfgi_bounce_feedback = settings["SDFGI"]["bounceFeedback"]
+	environment.sdfgi_cascades = settings["SDFGI"]["cascades"]
+	environment.sdfgi_min_cell_size = settings["SDFGI"]["minCellSize"]
+	environment.sdfgi_cascade0_distance = settings["SDFGI"]["cascade0Distance"]
+	environment.sdfgi_max_distance = settings["SDFGI"]["maxDistance"]
+	environment.sdfgi_y_scale = settings["SDFGI"]["yScale"]
+	environment.sdfgi_energy = settings["SDFGI"]["energy"]
+	environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
+	environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]
 
 func setFog(newSettings:Dictionary):
 	if !environment:
@@ -122,16 +122,16 @@ func setFog(newSettings:Dictionary):
 
 func applySettings():
 	pass
-#	if environment:
-#		#apply initial settings:
-#		environment.sdfgi_enabled = settings["SDFGI"]["enabled"]
-#		environment.sdfgi_use_occlusion = settings["SDFGI"]["useOcclusion"]
-#		environment.sdfgi_bounce_feedback = settings["SDFGI"]["bounceFeedback"]
-#		environment.sdfgi_cascades = settings["SDFGI"]["cascades"]
-#		environment.sdfgi_min_cell_size = settings["SDFGI"]["minCellSize"]
-#		environment.sdfgi_cascade0_distance = settings["SDFGI"]["cascade0Distance"]
-#		environment.sdfgi_max_distance = settings["SDFGI"]["maxDistance"]
-#		environment.sdfgi_y_scale = settings["SDFGI"]["yScale"]
-#		environment.sdfgi_energy = settings["SDFGI"]["energy"]
-#		environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
-#		environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]
+	if environment:
+		#apply initial settings:
+		environment.sdfgi_enabled = settings["SDFGI"]["enabled"]
+		environment.sdfgi_use_occlusion = settings["SDFGI"]["useOcclusion"]
+		environment.sdfgi_bounce_feedback = settings["SDFGI"]["bounceFeedback"]
+		environment.sdfgi_cascades = settings["SDFGI"]["cascades"]
+		environment.sdfgi_min_cell_size = settings["SDFGI"]["minCellSize"]
+		environment.sdfgi_cascade0_distance = settings["SDFGI"]["cascade0Distance"]
+		environment.sdfgi_max_distance = settings["SDFGI"]["maxDistance"]
+		environment.sdfgi_y_scale = settings["SDFGI"]["yScale"]
+		environment.sdfgi_energy = settings["SDFGI"]["energy"]
+		environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
+		environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]
