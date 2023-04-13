@@ -6,11 +6,9 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r0vpe"]
 
-[sub_resource type="Environment" id="Environment_7fbfi"]
-background_mode = 1
-background_color = Color(0.121569, 0.121569, 0.121569, 1)
-glow_enabled = true
-volumetric_fog_enabled = true
+[sub_resource type="Environment" id="Environment_6ek3h"]
+
+[node name="game" type="Node3D"]
 
 [node name="game" type="Node3D"]
 
@@ -33,4 +31,4 @@ pitch_scale = 0.7
 autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["environment"]]
-environment = SubResource("Environment_7fbfi")
+environment = SubResource("Environment_6ek3h")

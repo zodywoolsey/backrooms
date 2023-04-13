@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://procedural/backrooms/CSGBox3D.gd" id="4_gwx3a"]
 [ext_resource type="PackedScene" uid="uid://ciwpmcxrtblou" path="res://procedural/backrooms/ceiling_light.tscn" id="5_mxp3d"]
 [ext_resource type="PackedScene" uid="uid://b0vihhs84axsp" path="res://procedural/backrooms/crt.tscn" id="6_7vcdr"]
-[ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="6_x87c6"]
+[ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="6_ddpd4"]
 
 [sub_resource type="GDScript" id="GDScript_unaok"]
 script/source = "extends CSGBox3D
@@ -48,4 +48,4 @@ shape = SubResource("WorldBoundaryShape3D_s8oss")
 [node name="crt" parent="." instance=ExtResource("6_7vcdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0733507, 1.02519, -4.28266)
 
-[node name="player" parent="." instance=ExtResource("6_x87c6")]
+[node name="player" parent="." instance=ExtResource("6_ddpd4")]
