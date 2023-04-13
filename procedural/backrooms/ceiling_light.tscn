@@ -33,7 +33,6 @@ func _ready():
 
 [node name="light" type="Node3D"]
 transform = Transform3D(-1, 8.74228e-08, 0, 8.74228e-08, 1, 8.74228e-08, 7.64274e-15, 8.74228e-08, -1, 0, 0, 0)
-visible = false
 metadata/part = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

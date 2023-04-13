@@ -22,10 +22,12 @@ var current := []
 var todel := []
 var manualPos :Array = [
 	"16,16",
+	"24,24",
 	"64,8",
 	"40,60"
 ]
 var manualTiles :Array = [
+	preload("res://procedural/backrooms/ball.tscn"),
 	preload("res://procedural/backrooms/ball.tscn"),
 	preload("res://procedural/backrooms/ball.tscn"),
 	preload("res://procedural/backrooms/ball.tscn")
@@ -50,8 +52,8 @@ func _process(delta):
 	if get_tree().get_first_node_in_group("mainMenu").visible:
 		Globals.loadingProgress = remap(current.size(),0,size*size,0.0,100.0)
 		if toadd.size() < 10:
-			Globals.setSDFGI({'enabled':false})
-	#		Globals.setSDFGI({'enabled':true})
+#			Globals.setSDFGI({'enabled':false})
+#			Globals.setSDFGI({'enabled':true})
 			Globals.setFog({'enabled':false})
 			fogfix = true
 #	if !addThread.is_alive() and toadd.size() > 1:

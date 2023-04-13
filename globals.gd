@@ -36,7 +36,7 @@ var settings : Dictionary = {
 	}
 }
 
-@export_enum("main","pause","none") var UI_STATE : int = 1
+@export_enum("main","pause","none") var UI_STATE : int = 0
 
 func _ready():
 	find_player()

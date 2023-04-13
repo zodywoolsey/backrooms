@@ -26,6 +26,11 @@ func _process(delta):
 		mat.emission = lerp(mat.emission,Color(0,.5,0),.01)
 		omni_light_3d.light_color = lerp(omni_light_3d.light_color,Color(0,1.0,0),.01)
 		mat.albedo_color = lerp(mat.albedo_color, Color(.5,.5,.5),.01)
+	else:
+		mat = material_override
+		mat.emission = lerp(mat.emission,Color(.5,0,0),.01)
+		omni_light_3d.light_color = lerp(omni_light_3d.light_color,Color(1.0,0,0),.01)
+		mat.albedo_color = lerp(mat.albedo_color, Color(.5,.5,.5),.01)
 "
 
 [node name="ball" type="Node3D"]

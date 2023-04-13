@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://btmo0d70evqru"]
+[gd_scene load_steps=9 format=3 uid="uid://btmo0d70evqru"]
 
 [ext_resource type="Script" path="res://procedural/backrooms/scripts/procedural-new.gd" id="1_axgce"]
 [ext_resource type="Material" uid="uid://b7p4luj0f0jkc" path="res://procedural/assets/floor.tres" id="3_my80b"]
 [ext_resource type="Script" path="res://procedural/backrooms/CSGBox3D.gd" id="4_gwx3a"]
 [ext_resource type="PackedScene" uid="uid://ciwpmcxrtblou" path="res://procedural/backrooms/ceiling_light.tscn" id="5_mxp3d"]
 [ext_resource type="PackedScene" uid="uid://b0vihhs84axsp" path="res://procedural/backrooms/crt.tscn" id="6_7vcdr"]
+[ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="6_x87c6"]
 
 [sub_resource type="GDScript" id="GDScript_unaok"]
 script/source = "extends CSGBox3D
@@ -46,3 +47,5 @@ shape = SubResource("WorldBoundaryShape3D_s8oss")
 
 [node name="crt" parent="." instance=ExtResource("6_7vcdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0733507, 1.02519, -4.28266)
+
+[node name="player" parent="." instance=ExtResource("6_x87c6")]

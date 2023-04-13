@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var VR : bool = false
+@onready var hand = $cameraParent/Camera3D/hand
 
 @export var SPEED : float = 2
 @export var JUMP_VELOCITY : float = 5
@@ -17,7 +18,9 @@ var camera_parent
 var direction
 var mouseMotion : Vector2
 var shootTimer = 0
-var hand
+
+var handSidePos := Vector3(.568,-.329,-1.395)
+var handFrontPos := Vector3(0.0,0.0,-1.0)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -67,7 +70,11 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, currentspeed)
 		hbs = HEADBOB_SPEED
 		hbi = HEADBOB_INTENSITY
-	if !VR:
+	if !VR and Globals.UI_STATE != 0:
+		if Input.is_action_pressed("focus"):
+			hand.position = handFrontPos
+		else:
+			hand.position = handSidePos
 		if Input.is_action_just_pressed('shoot') and global_position.distance_to(hand.pickedObject.global_position) < 3:
 			hand.placed = !hand.placed
 		if Input.is_action_just_released("zoomout"):

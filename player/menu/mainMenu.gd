@@ -10,11 +10,11 @@ var main = preload("res://procedural/backrooms/main.tscn")
 func _ready():
 	button.pressed.connect(func():
 		Globals.seed = line_edit.text
-#		get_tree().get_first_node_in_group("world").add_child(main.instantiate())
+		get_tree().get_first_node_in_group("world").add_child(main.instantiate())
 		label.show()
 		button.hide()
 		)
-	button.emit_signal("pressed")
 
 func _process(delta):
 	loading_bar.value = Globals.loadingProgress
+

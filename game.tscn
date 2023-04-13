@@ -1,16 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://otrq8qqiulig"]
+[gd_scene load_steps=6 format=3 uid="uid://otrq8qqiulig"]
 
 [ext_resource type="PackedScene" uid="uid://dk1ngubdkvr84" path="res://player/menu/mainMenu.tscn" id="1_04tni"]
 [ext_resource type="PackedScene" uid="uid://ck3o462ufe57q" path="res://player/menu/pauseMenu.tscn" id="2_8tvar"]
-[ext_resource type="PackedScene" uid="uid://dqhomu0wkoqfa" path="res://player/player.tscn" id="2_twmmb"]
 [ext_resource type="AudioStream" uid="uid://cmt2c1xlepema" path="res://assets/audio/Deep Space Travel Background Noise.mp3" id="4_3x36v"]
-[ext_resource type="PackedScene" uid="uid://btmo0d70evqru" path="res://procedural/backrooms/main.tscn" id="4_dtlab"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r0vpe"]
 
-[node name="game" type="Node3D"]
+[sub_resource type="Environment" id="Environment_7fbfi"]
+background_mode = 1
+background_color = Color(0.121569, 0.121569, 0.121569, 1)
+glow_enabled = true
+volumetric_fog_enabled = true
 
-[node name="player" parent="." instance=ExtResource("2_twmmb")]
+[node name="game" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -21,8 +23,6 @@ shape = SubResource("WorldBoundaryShape3D_r0vpe")
 
 [node name="world" type="Node3D" parent="." groups=["world"]]
 
-[node name="main" parent="world" instance=ExtResource("4_dtlab")]
-
 [node name="pauseMenu" parent="." instance=ExtResource("2_8tvar")]
 visible = true
 
@@ -31,3 +31,6 @@ stream = ExtResource("4_3x36v")
 volume_db = -14.543
 pitch_scale = 0.7
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["environment"]]
+environment = SubResource("Environment_7fbfi")
