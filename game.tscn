@@ -8,6 +8,8 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r0vpe"]
 
+[sub_resource type="Environment" id="Environment_6ek3h"]
+
 [node name="game" type="Node3D"]
 
 [node name="player" parent="." instance=ExtResource("2_twmmb")]
@@ -31,3 +33,6 @@ stream = ExtResource("4_3x36v")
 volume_db = -14.543
 pitch_scale = 0.7
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["environment"]]
+environment = SubResource("Environment_6ek3h")
