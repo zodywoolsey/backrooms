@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://otrq8qqiulig"]
+[gd_scene load_steps=5 format=3 uid="uid://otrq8qqiulig"]
 
 [ext_resource type="PackedScene" uid="uid://dk1ngubdkvr84" path="res://player/menu/mainMenu.tscn" id="1_04tni"]
 [ext_resource type="PackedScene" uid="uid://ck3o462ufe57q" path="res://player/menu/pauseMenu.tscn" id="2_8tvar"]
 [ext_resource type="AudioStream" uid="uid://cmt2c1xlepema" path="res://assets/audio/Deep Space Travel Background Noise.mp3" id="4_3x36v"]
+
+[sub_resource type="Environment" id="Environment_6ek3h"]
 
 [node name="game" type="Node3D"]
 
@@ -17,3 +19,6 @@ stream = ExtResource("4_3x36v")
 volume_db = -14.543
 pitch_scale = 0.7
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["environment"]]
+environment = SubResource("Environment_6ek3h")
