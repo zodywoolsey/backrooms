@@ -22,6 +22,10 @@ config/windows_native_icon="res://favicon.ico"
 
 Globals="*res://globals.gd"
 
+[display]
+
+window/subwindows/embed_subwindows=false
+
 [gui]
 
 theme/custom="res://ui/theme/pupperTheme.tres"
@@ -93,7 +97,6 @@ zoomout={
 
 [rendering]
 
-lights_and_shadows/directional_shadow/size=8192
 global_illumination/sdfgi/probe_ray_count=3
 global_illumination/sdfgi/frames_to_converge=3
 anti_aliasing/quality/msaa_2d=1

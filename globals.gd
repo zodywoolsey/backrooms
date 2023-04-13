@@ -22,7 +22,7 @@ var settings : Dictionary = {
 		"probeBias": 1.1
 	},
 	"Glow": {
-		"enabled": true,
+		"enabled": false,
 		"intensity": 1.0,
 		"strength": 1.1,
 		"bloom": 0.2,
@@ -32,7 +32,7 @@ var settings : Dictionary = {
 		"hdrLuminanceCap": 12.0
 	},
 	"Fog": {
-		"enabled": true
+		"enabled": false
 	}
 }
 
@@ -117,10 +117,11 @@ func setFog(newSettings:Dictionary):
 	if newSettings.has("enabled") and newSettings["enabled"] is bool:
 		settings["Fog"]["enabled"] = newSettings["enabled"]
 	
-	environment.volumetric_fog_enabled = settings["Fog"]["enabled"]
+#	environment.volumetric_fog_enabled = settings["Fog"]["enabled"]
 	
 
 func applySettings():
+	pass
 	if environment:
 		#apply initial settings:
 		environment.sdfgi_enabled = settings["SDFGI"]["enabled"]

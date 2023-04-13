@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btmo0d70evqru"]
+[gd_scene load_steps=8 format=3 uid="uid://btmo0d70evqru"]
 
 [ext_resource type="Script" path="res://procedural/backrooms/scripts/procedural-new.gd" id="1_axgce"]
 [ext_resource type="Material" uid="uid://b7p4luj0f0jkc" path="res://procedural/assets/floor.tres" id="3_my80b"]

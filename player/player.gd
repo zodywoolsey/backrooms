@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var VR : bool = false
+
 @export var SPEED : float = 2
 @export var JUMP_VELOCITY : float = 5
 @export var GRAVITY : float = 10
@@ -9,18 +11,22 @@ var hbi
 @export var HEADBOB_SPEED : float = 1.0
 var hbs
 var currentFallSpeed
-@onready var camera : Camera3D = $cameraParent/Camera3D
-@onready var camera_parent = $cameraParent
+var camera : Camera3D
+var camera_parent
 @onready var flare = preload("res://player/flare.tscn")
 var direction
 var mouseMotion : Vector2
 var shootTimer = 0
-@onready var hand = $cameraParent/Camera3D/hand
+var hand
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	if !VR:
+		camera = $cameraParent/Camera3D
+		camera_parent = $cameraParent
+		hand = $cameraParent/Camera3D/hand
 	currentFallSpeed = GRAVITY
 	hbs = HEADBOB_SPEED
 	hbi = HEADBOB_INTENSITY
@@ -61,22 +67,23 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, currentspeed)
 		hbs = HEADBOB_SPEED
 		hbi = HEADBOB_INTENSITY
-	
-	if Input.is_action_just_pressed('shoot') and global_position.distance_to(hand.pickedObject.global_position) < 3:
-		hand.placed = !hand.placed
-	if Input.is_action_just_released("zoomout"):
-		if hand.pickedObject.is_in_group('handCamBody'):
-			if get_tree().get_first_node_in_group('handCam').fov < 110:
-				get_tree().get_first_node_in_group('handCam').fov += 5
-	if Input.is_action_just_released("zoomin"):
-		if hand.pickedObject.is_in_group('handCamBody'):
-			if get_tree().get_first_node_in_group('handCam').fov > 10:
-				get_tree().get_first_node_in_group('handCam').fov -= 5
+	if !VR:
+		if Input.is_action_just_pressed('shoot') and global_position.distance_to(hand.pickedObject.global_position) < 3:
+			hand.placed = !hand.placed
+		if Input.is_action_just_released("zoomout"):
+			if hand.pickedObject.is_in_group('handCamBody'):
+				if get_tree().get_first_node_in_group('handCam').fov < 110:
+					get_tree().get_first_node_in_group('handCam').fov += 5
+		if Input.is_action_just_released("zoomin"):
+			if hand.pickedObject.is_in_group('handCamBody'):
+				if get_tree().get_first_node_in_group('handCam').fov > 10:
+					get_tree().get_first_node_in_group('handCam').fov -= 5
 	
 	
 	move_and_slide()
 	mouseMotion = Vector2()
-	camera_parent.position = lerp(Vector3(0,.5-hbi,0),Vector3(0,.5+hbi,0),sin(Time.get_unix_time_from_system()*hbs))
+	if !VR:
+		camera_parent.position = lerp(Vector3(0,.5-hbi,0),Vector3(0,.5+hbi,0),sin(Time.get_unix_time_from_system()*hbs))
 
 
 func _input(event):
@@ -84,7 +91,8 @@ func _input(event):
 		mouseMotion = event.relative
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			rotate(Vector3.UP, ((-mouseMotion.x/100000)*MOUSE_SENSITIVITY) )
-			camera.rotate(Vector3.RIGHT, ((-mouseMotion.y/100000)*MOUSE_SENSITIVITY))
+			if !VR:
+				camera.rotate(Vector3.RIGHT, ((-mouseMotion.y/100000)*MOUSE_SENSITIVITY))
 			
 #	if event is InputEventMouseButton:
 #		if event.pressed:
