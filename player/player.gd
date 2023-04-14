@@ -86,6 +86,11 @@ func _physics_process(delta):
 				if get_tree().get_first_node_in_group('handCam').fov > 10:
 					get_tree().get_first_node_in_group('handCam').fov -= 5
 	
+	var look = Input.get_vector("lookLeft","lookRight","lookDown","lookUp")
+	if look.length() > .1:
+		camera.rotate(Vector3.RIGHT, (look.y/1000)*MOUSE_SENSITIVITY)
+		rotate(Vector3.UP, (-look.x/1000)*MOUSE_SENSITIVITY)
+	
 	
 	move_and_slide()
 	mouseMotion = Vector2()

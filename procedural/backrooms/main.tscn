@@ -28,14 +28,14 @@ script = ExtResource("1_axgce")
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = ExtResource("3_my80b")
-size = Vector3(100, 1, 100)
+size = Vector3(200, 1, 200)
 script = ExtResource("4_gwx3a")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.30896, 0)
 material_override = ExtResource("3_my80b")
 use_collision = true
-size = Vector3(100, 1, 100)
+size = Vector3(200, 1, 200)
 script = SubResource("GDScript_unaok")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

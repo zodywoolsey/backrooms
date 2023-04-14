@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd86k6cpmsfuk"]
+
+[ext_resource type="Script" path="res://ui/notify.gd" id="1_qym43"]
+[ext_resource type="Script" path="res://ui/Panel.gd" id="2_47pf0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afgp6"]
+bg_color = Color(0, 0, 0, 0.572549)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("1_qym43")
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 3
+layout_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_afgp6")
+script = ExtResource("2_47pf0")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -13.0
+offset_right = 29.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -6,6 +6,7 @@ var environment : Environment
 var pause : Control
 var seed : String = "10"
 var loadingProgress := 0
+var notif = preload("res://ui/notify.tscn")
 
 var settings : Dictionary = {
 	"SDFGI": {
@@ -39,6 +40,21 @@ var settings : Dictionary = {
 @export_enum("main","pause","none") var UI_STATE : int = 0
 
 func _ready():
+	var os = ""
+	var distro = ""
+	if OS.get_name() == "Linux":
+		os = OS.get_name()
+		distro = OS.get_distribution_name()
+		notify("OS: {0}".format([os]))
+		notify("{0}".format([distro]) )
+	else:
+		os = OS.get_name()
+		notify("OS: {0}".format([os]))
+	Steam.steamInit()
+	if os == "Linux":
+		if distro == "\"SteamOS\"":
+			notify("steamdeck")
+			get_window().mode = Window.MODE_FULLSCREEN
 	find_player()
 	find_environment()
 
@@ -51,7 +67,7 @@ func _process(delta):
 			pause.hide()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.is_action_just_pressed("ui_cancel"):
-		print('pause')
+		notify('pause')
 		if UI_STATE == 1:
 			UI_STATE = 2
 		elif UI_STATE == 2:
@@ -60,18 +76,18 @@ func _process(delta):
 func find_player():
 	player = get_tree().get_first_node_in_group('player')
 
-func is_player_found():
-	print(player)
+#func is_player_found():
+#	print(player)
 
 func find_environment():
 	var tmp = get_tree().get_first_node_in_group("environment")
 	print(tmp)
 	if tmp is WorldEnvironment:
 		environment = tmp.environment
-		print('world')
+		notify('world')
 	elif tmp is Environment:
 		environment = tmp
-		print('env')
+		notify('env')
 
 func setSDFGI(newSettings:Dictionary):
 	if !environment:
@@ -135,3 +151,8 @@ func applySettings():
 		environment.sdfgi_energy = settings["SDFGI"]["energy"]
 		environment.sdfgi_normal_bias = settings["SDFGI"]["normalBias"]
 		environment.sdfgi_probe_bias = settings["SDFGI"]["probeBias"]
+
+func notify(message: String):
+	var noti = notif.instantiate()
+	noti.text = message
+	get_tree().get_first_node_in_group("notifContainer").call_deferred("add_child",noti)

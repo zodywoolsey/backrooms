@@ -34,3 +34,16 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["environment"]]
 environment = SubResource("Environment_7fbfi")
+
+[node name="Control" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.01
+anchor_bottom = 0.01
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" groups=["notifContainer"]]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
